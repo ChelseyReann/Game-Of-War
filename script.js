@@ -31,6 +31,8 @@ class GameOfWar {
     constructor (){
        this.player1 = []
        this.player2 = []
+       this.hand1 = []
+       this.hand2 = []
        this.splitCards()
        this.battle()
     }
@@ -46,6 +48,27 @@ class GameOfWar {
         this.player1.push(...halfDeck)
         //assigning the rest of the deck to player 2
         this.player2.push(...deck.cards)
+    }
+    //playing the game function
+    battle(){
+        //making hand1 read the value of the first card in player1's card array
+        this.hand1 = this.player1.shift()
+         //making hand2 read the value of the first card in the player2's card array
+        this.hand2 = this.player2.shift()
+        //creating the loop to declare a winner or go to war
+        if(this.hand1.score > this.hand2.score){
+            this.player1.push(this.hand1, this.hand2)
+            console.log("Player 1 Wins!")
+        } else if(this.hand1.score < this.hand2.score) {
+            this.player2.push(this.hand1, this.hand2)
+            console.log("Player 2 Wins!")
+        } else if(this.hand1.score === this.hand2.score){
+            this.warTime()
+            console.log("I Declare War!")
+        }
+    }
+    warTime(){
+
     }
 }
 

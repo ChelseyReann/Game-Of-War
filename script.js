@@ -57,12 +57,18 @@ class GameOfWar {
         this.hand2 = this.player2.shift()
         //creating the loop to declare a winner or go to war
         if(this.hand1.score > this.hand2.score){
+            //if player1 wins push the cards into their array
             this.player1.push(this.hand1, this.hand2)
             console.log("Player 1 Wins!")
+            console.log("Player 1 has " + this.player1.length + " cards left. Player 2 has " + this.player2.length + " cards left.")
         } else if(this.hand1.score < this.hand2.score) {
+            //if player2 wins push the cards into their array
             this.player2.push(this.hand1, this.hand2)
             console.log("Player 2 Wins!")
+            console.log(this.player2.length)
+            console.log("Player 1 has " + this.player1.length + " cards left. Player 2 has " + this.player2.length + " cards left.")
         } else if(this.hand1.score === this.hand2.score){
+            //if it's a tie go to war
             this.warTime()
             console.log("I Declare War!")
         }

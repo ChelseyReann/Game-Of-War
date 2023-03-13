@@ -72,19 +72,28 @@ class GameOfWar {
             
         }
     }
-    // warTime(){
-    //     //grab 4 cards from each player's deck and read the last value
-    //     let p1War = this.player1.splice(0, 4)
-    //     let p2War = this.player2.splice(0, 4)
-    //     this.hand1.push(...p1War)
-    //     this.hand2.push(...p2War)
-    //     let p1L = this.player1.length
-    //     let p2L = this.player2.length
-    //     //read the value of the last card and compare each player's card to declare a winner
-    //     if (p1L-1 ){
-
-    //     }
-    //}
+    warTime(){
+        //grab 4 cards from each player's deck and read the last value
+        let p1War = this.player1.splice(0, 4)
+        let p2War = this.player2.splice(0, 4)
+        this.hand1.push(...p1War)
+        this.hand2.push(...p2War)
+        let p1L = this.hand1.length
+        let p2L = this.hand2.length
+        //read the value of the last card and compare each player's card to declare a winner
+        if (this.hand1[p1L-1].score > this.hand2[p2L-1].score){
+            this.player1.push(...this.hand1, ...this.hand2)
+            console.log("Player 1 wins the War!")
+            console.log("Player 1 has " + this.player1.length + " cards left. Player 2 has " + this.player2.length + " cards left.")
+        } else if (this.hand1[p1L-1].score < this.hand2[p2L-1].score){
+            this.player2.push(...this.hand1, ...this.hand2)
+            console.log("Player 2 wins the War!")
+            console.log("Player 1 has " + this.player1.length + " cards left. Player 2 has " + this.player2.length + " cards left.")
+        } else if (this.hand1[p1L-1].score === this.hand2[p2L-1].score){
+            console.log("I Declare War!(Again!!)")
+            this.warTime()
+        }
+    }
 }
 
 const deck = new Deck ()

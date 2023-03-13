@@ -12,12 +12,12 @@ class Deck {
         this.createDeck()
     }
     createDeck(){
-        let suits = ["Hearts", "Spades", "Clubs", "Diamonds"]
-        let ranks = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
+        let suits = ["♠", "♡", "♢", "♣"]
+        let ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
 
         for (let i = 0; i < suits.length; i++){
             for (let j = 0; j < ranks.length; j++){
-                this.cards.push(new Card(suits[i], ranks[j], j + 1))
+                this.cards.push(new Card(suits[i], ranks[j], j + 2))
             }
         }
         this.shuffle()
@@ -29,16 +29,36 @@ class Deck {
 
 class GameOfWar {
     constructor (){
-        p1 = []
-        p2 = []
-        pile = []
-        init()
+       this.player1 = []
+       this.player2 = []
+       this.splitCards()
+       this.battle()
     }
-    init(){
-        //createDeck
-        //split deck between players
+    //split deck between players
+    splitCards(){
+        //creating a new instance of deck
+        let deck = new Deck()
+        //figuring out what half the length of the deck is to assign cards to each player
+        const splitDeck = Math.ceil(deck.cards.length/2)
+        //declaring half the deck as a variable
+        let halfDeck = deck.cards.splice(0, splitDeck)
+        //pushing half the deck to player 1
+        this.player1.push(...halfDeck)
+        //assigning the rest of the deck to player 2
+        this.player2.push(...deck.cards)
+    }
+    battle(){
+        if(this.player1.card.score > this.player2.card.score){
+            this.player1.card.push(this.player2.card)
+        } else if(this.player1.card.score < this.player2.card.score) {
+            this.player2.card.push(this.player1.card)
+        } else if(this.player1.card.score === this.player2.card.score){
+            console.log("It's a tie!")
+        }
     }
 }
 
 const deck = new Deck ()
 console.log(deck)
+const game = new GameOfWar()
+console.log(game)

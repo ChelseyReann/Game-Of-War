@@ -52,30 +52,39 @@ class GameOfWar {
     //playing the game function
     battle(){
         //making hand1 read the value of the first card in player1's card array
-        this.hand1 = this.player1.shift()
+        this.hand1 = [this.player1.shift()]
          //making hand2 read the value of the first card in the player2's card array
-        this.hand2 = this.player2.shift()
+        this.hand2 = [this.player2.shift()]
         //creating the loop to declare a winner or go to war
-        if(this.hand1.score > this.hand2.score){
+        if(this.hand1[0].score > this.hand2[0].score){
             //if player1 wins push the cards into their array
-            this.player1.push(this.hand1, this.hand2)
-            console.log("Player 1 Wins!")
+            this.player1.push(...this.hand1, ...this.hand2)
             console.log("Player 1 has " + this.player1.length + " cards left. Player 2 has " + this.player2.length + " cards left.")
-        } else if(this.hand1.score < this.hand2.score) {
+        } else if(this.hand1[0].score < this.hand2[0].score) {
             //if player2 wins push the cards into their array
-            this.player2.push(this.hand1, this.hand2)
+            this.player2.push(...this.hand1, ...this.hand2)
             console.log("Player 2 Wins!")
-            console.log(this.player2.length)
             console.log("Player 1 has " + this.player1.length + " cards left. Player 2 has " + this.player2.length + " cards left.")
-        } else if(this.hand1.score === this.hand2.score){
+        } else if(this.hand1[0].score === this.hand2[0].score){
             //if it's a tie go to war
-            this.warTime()
             console.log("I Declare War!")
+            this.warTime()
+            
         }
     }
-    warTime(){
+    // warTime(){
+    //     //grab 4 cards from each player's deck and read the last value
+    //     let p1War = this.player1.splice(0, 4)
+    //     let p2War = this.player2.splice(0, 4)
+    //     this.hand1.push(...p1War)
+    //     this.hand2.push(...p2War)
+    //     let p1L = this.player1.length
+    //     let p2L = this.player2.length
+    //     //read the value of the last card and compare each player's card to declare a winner
+    //     if (p1L-1 ){
 
-    }
+    //     }
+    //}
 }
 
 const deck = new Deck ()

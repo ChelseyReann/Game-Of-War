@@ -47,15 +47,6 @@ class GameOfWar {
         //assigning the rest of the deck to player 2
         this.player2.push(...deck.cards)
     }
-    battle(){
-        if(this.player1.card.score > this.player2.card.score){
-            this.player1.card.push(this.player2.card)
-        } else if(this.player1.card.score < this.player2.card.score) {
-            this.player2.card.push(this.player1.card)
-        } else if(this.player1.card.score === this.player2.card.score){
-            console.log("It's a tie!")
-        }
-    }
 }
 
 const deck = new Deck ()

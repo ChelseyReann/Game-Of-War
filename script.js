@@ -1,5 +1,5 @@
 class Card {
-    constructor (suit, rank, score){
+    constructor(suit, rank, score) {
         this.suit = suit
         this.rank = rank
         this.score = score
@@ -7,11 +7,11 @@ class Card {
 }
 
 class Deck {
-    constructor (){
+    constructor () {
         this.cards = []
         this.createDeck()
     }
-    createDeck(){
+    createDeck() {
         let suits = ["♠", "♡", "♢", "♣"]
         let ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
 
@@ -22,13 +22,13 @@ class Deck {
         }
         this.shuffle()
     }
-    shuffle (){
+    shuffle () {
         this.cards = this.cards.sort((a, b) => 0.5 - Math.random())
     }
 }
 
 class GameOfWar {
-    constructor (){
+    constructor() {
        this.player1 = []
        this.player2 = []
        this.hand1 = []
@@ -37,7 +37,7 @@ class GameOfWar {
        this.battle()
     }
     //split deck between players
-    splitCards(){
+    splitCards() {
         //creating a new instance of deck
         let deck = new Deck()
         //figuring out what half the length of the deck is to assign cards to each player
@@ -56,20 +56,32 @@ class GameOfWar {
          //making hand2 read the value of the first card in the player2's card array
         this.hand2 = [this.player2.shift()]
         //creating the loop to declare a winner or go to war
-        if(this.hand1[0].score > this.hand2[0].score){
-            //if player1 wins push the cards into their array
-            this.player1.push(...this.hand1, ...this.hand2)
-            console.log("Player 1 has " + this.player1.length + " cards left. Player 2 has " + this.player2.length + " cards left.")
-        } else if(this.hand1[0].score < this.hand2[0].score) {
-            //if player2 wins push the cards into their array
-            this.player2.push(...this.hand1, ...this.hand2)
-            console.log("Player 2 Wins!")
-            console.log("Player 1 has " + this.player1.length + " cards left. Player 2 has " + this.player2.length + " cards left.")
-        } else if(this.hand1[0].score === this.hand2[0].score){
-            //if it's a tie go to war
-            console.log("I Declare War!")
-            this.warTime()
+
+        while (this.player1.length !== 0 && this.player2.length !== 0){
+            if (this.player1.length === 0){
+                console.log("Player 2 is the winner!")
+            }else if (this.player2.length === 0){
+                console.log("Player 1 is the winner!")
+            }else if(this.hand1[0].score > this.hand2[0].score){
+                //if player1 wins push the cards into their array
+                this.player1.push(...this.hand2, ...this.hand1)
+                console.log("Player 1 Wins! Player 1 has " + this.player1.length + " cards left. Player 2 has " + this.player2.length + " cards left.")
+                this.hand1 = []
+                this.hand2 = []
+                this.battle()
+            } else if(this.hand1[0].score < this.hand2[0].score) {
+                //if player2 wins push the cards into their array
+                this.player2.push(...this.hand1, ...this.hand2)
+                console.log("Player 2 Wins! Player 1 has " + this.player1.length + " cards left. Player 2 has " + this.player2.length + " cards left.")
+                this.hand1 = []
+                this.hand2 = []
+                this.battle()
+            } else if(this.hand1[0].score === this.hand2[0].score){
+                //if it's a tie go to war
+                console.log("I Declare War!")
+                this.warTime()
             
+            }
         }
     }
     warTime(){
@@ -81,14 +93,24 @@ class GameOfWar {
         let p1L = this.hand1.length
         let p2L = this.hand2.length
         //read the value of the last card and compare each player's card to declare a winner
-        if (this.hand1[p1L-1].score > this.hand2[p2L-1].score){
-            this.player1.push(...this.hand1, ...this.hand2)
-            console.log("Player 1 wins the War!")
-            console.log("Player 1 has " + this.player1.length + " cards left. Player 2 has " + this.player2.length + " cards left.")
+        if(this.player1.length < 4){
+            this.player2.push(...this.hand1, ...this.hand2)
+            console.log("Player 2 is the winner!")
+        } else if(this.player2.length < 4){
+            this.player1.push(...this.hand2, ...this.hand1)
+            console.log("Player 1 is the winner!")
+        } else if (this.hand1[p1L-1].score > this.hand2[p2L-1].score){
+            this.player1.push(...this.hand2, ...this.hand1)
+            console.log("Player 1 wins the War! Player 1 has " + this.player1.length + " cards left. Player 2 has " + this.player2.length + " cards left.")
+            this.hand1 = []
+            this.hand2 = []
+            this.battle()
         } else if (this.hand1[p1L-1].score < this.hand2[p2L-1].score){
             this.player2.push(...this.hand1, ...this.hand2)
-            console.log("Player 2 wins the War!")
-            console.log("Player 1 has " + this.player1.length + " cards left. Player 2 has " + this.player2.length + " cards left.")
+            console.log("Player 2 wins the War! Player 1 has " + this.player1.length + " cards left. Player 2 has " + this.player2.length + " cards left.")
+            this.hand1 = []
+            this.hand2 = []
+            this.battle()
         } else if (this.hand1[p1L-1].score === this.hand2[p2L-1].score){
             console.log("I Declare War!(Again!!)")
             this.warTime()
@@ -96,7 +118,7 @@ class GameOfWar {
     }
 }
 
-const deck = new Deck ()
-console.log(deck)
+//const deck = new Deck ()
+//console.log(deck)
 const game = new GameOfWar()
 console.log(game)

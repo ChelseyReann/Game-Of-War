@@ -26,8 +26,13 @@ I've formated my game so that the **Ace** is the highest scoring card
 <!-- OL -->
 
 1. Fork and clone this repository
-1. Open the script.js file in the code reader of your choice (I use VS Code)
+1. Open the script.js file in the code editor of your choice (I use VS Code)
 1. Make sure you have [Node.js](https://nodejs.org/en/) installed. The game happens entirely in the console so you have to be able to read it!
 1. Open the Terminal and write **node script.js** to read how the game played itself out!
+
+## Connect with me!
+[LinkedIn](https://www.linkedin.com/in/chelsey-alphonso-84067353/)
+
+[My Personal Website](https://chelseyreann.github.io/)
 
 

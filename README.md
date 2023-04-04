@@ -31,7 +31,7 @@ I've formated my game so that the **Ace** is the highest scoring card
 1. Open the Terminal and write **node script.js** to read how the game played itself out!
 
 ## Connect with me!
-[LinkedIn](https://www.linkedin.com/in/chelsey-alphonso-84067353/)
+[LinkedIn](https://www.linkedin.com/in/chelsey-alphonso)
 
 [My Personal Website](https://chelseyreann.github.io/)
 
